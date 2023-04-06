@@ -43,7 +43,9 @@ function PerformingMoves() {
 		if (state == playerstates.normal)
 			state = playerstates.attacking;
 			move_current = move_execute(playermoves.carinha_jab1);
-			hurtbox_mask = hurtbox_create(self, move_current.mask, move_current.strength, move_current.effect, move_current.heightpower);	
+			hurtbox_mask = hurtbox_create(self, move_current.mask, 
+							move_current.strength, move_current.effect, 
+							move_current.heightpower);	
 			
 			controlable = false;
 			if (grounded)

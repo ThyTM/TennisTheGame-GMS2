@@ -1,4 +1,7 @@
-if (state == playerstates.attacking) {
+function ResetState() {
+	if (state != playerstates.attacking)
+		return;
+
 	move_end();
 	state = playerstates.normal;
 	
@@ -8,3 +11,5 @@ if (state == playerstates.attacking) {
 	
 	controlable = true;
 }
+
+ResetState();
