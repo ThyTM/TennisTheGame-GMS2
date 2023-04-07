@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_tai_idle",
-    "path": "sprites/spr_tai_idle/spr_tai_idle.yy",
+    "name": "spr_plh_idle",
+    "path": "sprites/spr_plh_idle/spr_plh_idle.yy",
   },
   "solid": false,
   "visible": true,
