@@ -1,4 +1,4 @@
-function ResetState() {
+/*function ResetState() {
 	if (state != playerstates.attacking)
 		return;
 

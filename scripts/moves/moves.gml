@@ -1,5 +1,9 @@
+function move_get(_moveID) {
+	return obj_Database.charactermovelist[@ _moveID];
+}
+
 function move_execute(_moveID) {
-	var move = obj_Database.movelist[_moveID];
+	var move = obj_Database.movelist[@ _moveID];
 	
 	sprite_index = move.sprite;
 	image_index = 0;

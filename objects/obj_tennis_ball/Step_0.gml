@@ -30,7 +30,7 @@ function VBounce() {
 
 function Trail() {
 	trail = instance_create_depth(x,y,0,obj_ball_trail);
-	trail.image_blend = make_colour_hsv(130, 255, 255);;
+	trail.image_blend = make_colour_hsv(130, 255, 255);
 }
 
 Gravity();

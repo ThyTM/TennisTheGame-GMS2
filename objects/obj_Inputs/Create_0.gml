@@ -1,4 +1,5 @@
 //format: inputstate[buttonid,  gamepad,  inputstates]
+/*
 inputstate[inputbuttons.none,	0]		= inputstates.none;
 inputstate[inputbuttons.start,	0]		= inputstates.none;
 inputstate[inputbuttons.select, 0]		= inputstates.none;
