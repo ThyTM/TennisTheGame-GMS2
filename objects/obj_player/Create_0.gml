@@ -4,8 +4,6 @@ enum playerstates {
 };
 
 state				= playerstates.normal;
-//character_skin		= characters.Tai;
-//move_current		= playermoves.none;
 hurtbox_mask		= noone;
 					
 moveSpeed			= 2;

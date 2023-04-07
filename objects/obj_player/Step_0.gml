@@ -1,4 +1,4 @@
-
+#region Physics and Movement
 function Gravity() {
 	if (!grounded)
 		vspd += grav;
@@ -20,7 +20,6 @@ function Movement() {
 		return;
 	
 	axisX = -keyboard_check(vk_left) + keyboard_check(vk_right);
-	axisY = -keyboard_check(vk_up)   + keyboard_check(vk_down);
 
 	if (grounded)
 		hspd = axisX * moveSpeed;
@@ -30,30 +29,14 @@ function Movement() {
 	}
 }
 
-function Animation() {
-	if (state == playerstates.normal) {
-		sprite_index = spr_tai_idle;
-	}
-}
-
-function PerformingMoves() {
-	if (!controlable)
-		return;
-}
-
 function UpdateCoord() {
 	x += hspd;
 	y += vspd;
 }
-
-function MoveCheck() {
-	
-}
+#endregion
 
 /////////////
 Gravity();
 Collision();
 Movement();
-Animation();
-PerformingMoves();
 UpdateCoord();
