@@ -34,9 +34,13 @@ function UpdateCoord() {
 	y += vspd;
 }
 #endregion
+#region Character Handling
+	
+#endregion
 
 /////////////
 Gravity();
 Collision();
 Movement();
 UpdateCoord();
+/////////////

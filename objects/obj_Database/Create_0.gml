@@ -1,3 +1,4 @@
+#region Constructors
 function Character(_name, _sprites, _moveset) constructor {
 	name = _name;
 	
@@ -39,6 +40,7 @@ function MoveAction(_name) constructor {
 		haxis = sign(_h);
 		vaxis = sign(_v);
 	}
+	
 	function Perform() {
 		timeline_position = 0;
 		timeline_running = true;
@@ -49,12 +51,33 @@ function MoveAction(_name) constructor {
 		timeline_running = false;
 	}
 }
-
-enum characters {
-	carinha
-};
-
+#endregion
+#region Initializers
 function init_characters() {
+	#region Example
+	/*
+	var char = new Character("Carinha");
+
+	//Sprites
+	char.addSprite(spr_tai_idle);
+
+	//Moves
+	var move = new MoveAction("Neutral");
+	move.SetTimeline(tl_move_taijab);
+	move.SetSpecial(false);
+	move.SetAirOK(false);
+	move.SetAxis(0, 0);
+	char.addMoveAction(move);
+	
+	character[characters.carinha] = char;
+	*/
+	#endregion
+	
+	//Index of all in-game characters
+	enum characters {
+		carinha
+	};
+	
 	#region CHARACTERS.CARINHA
 	var char = new Character("Carinha");
 
@@ -72,3 +95,4 @@ function init_characters() {
 	character[characters.carinha] = char;
 	#endregion
 }
+#endregion
