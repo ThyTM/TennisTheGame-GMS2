@@ -28,6 +28,14 @@ function VBounce() {
 	vspd *= -0.9;
 }
 
+function SpamDetect() {
+	if (spam_prevent) {
+		if !place_meeting(x, y, obj_player_hurtbox) {
+			spam_prevent = false;
+		}
+	}
+}
+
 function Trail() {
 	trail = instance_create_depth(x,y,0,obj_ball_trail);
 	trail.image_blend = make_colour_hsv(130, 255, 255);
@@ -35,4 +43,5 @@ function Trail() {
 
 Gravity();
 Collision();
+SpamDetect();
 Trail();

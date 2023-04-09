@@ -15,16 +15,19 @@ function Collision() {
 	grounded = place_meeting(x,y+1, obj_block);
 }
 
+function GrabInput() {
+	haxis = -keyboard_check(vk_left) + keyboard_check(vk_right);
+	vaxis = -keyboard_check(vk_up)	 + keyboard_check(vk_down);
+}
+
 function Movement() {
 	if (!controlable)
 		return;
-	
-	axisX = -keyboard_check(vk_left) + keyboard_check(vk_right);
 
 	if (grounded)
-		hspd = axisX * moveSpeed;
+		hspd = haxis * moveSpeed;
 	
-	if (keyboard_check(vk_up) and grounded) {
+	if (vaxis < 0 and grounded) {
 		vspd = -jumpSpeed;
 	}
 }
@@ -35,12 +38,45 @@ function UpdateCoord() {
 }
 #endregion
 #region Character Handling
-	
+function Attacking() {
+	if (!controlable)
+		return;
+		
+	if (keyboard_check_pressed(ord("Z"))) {
+		var char = CharacterGet();
+		var input = GetAxisNumber(haxis, vaxis);
+		
+		movecurrent = 0;
+		for (var i = 0; i < array_length(char.moveset); i++) {
+			var c = char.moveset[@ i];
+			
+			if (c.inputdir == input) {
+				movecurrent = i;
+				break;
+			}
+		}
+		AttackStart(char.moveset[@ movecurrent].timeline);
+		
+		if (grounded) {
+			hspd = 0;
+		}
+	}
+}
+
+function Animation() {
+	if (state != playerstates.normal)
+		return;
+		
+	sprite_index = sprite_idle;
+}
 #endregion
 
 /////////////
 Gravity();
 Collision();
+GrabInput();
 Movement();
 UpdateCoord();
 /////////////
+Attacking();
+Animation();

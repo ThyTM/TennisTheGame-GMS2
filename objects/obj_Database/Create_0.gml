@@ -1,31 +1,38 @@
+#region Enumerators
+
+#endregion
 #region Constructors
-function Character(_name, _sprites, _moveset) constructor {
+function Character(_name, _id) constructor {
 	name = _name;
 	
-	sprites = [
 	
-	];
+	sprite_idle = spr_error;
+	sprite_walk = spr_error;
+	sprite_dash = spr_error;
+	sprite_jump = spr_error;
 	
 	moveset = [
 	
 	];
 	
-	function addSprite(spr) {
-		sprites[array_length(sprites)] = spr;
+	function SetSprites(spr_idle, _walk, _dash, _jump) {
+		sprite_idle = spr_idle;
+		sprite_walk = _walk;
+		sprite_dash = _dash;
+		sprite_jump = _jump;
 	}
 	function addMoveAction(move) {
 		moveset[array_length(moveset)] = move;
 	}
 };
-function MoveAction(_name) constructor {
+function MoveAction(_name, _inputDir) constructor {
 	name		= _name;
 	timeline	= 0;
 	
 	special		= false;
 	airok		= false;
 	
-	haxis		= 0;
-	vaxis		= 0;
+	inputdir	= _inputDir;
 	
 	function SetTimeline(_time) {
 		timeline = _time;
@@ -36,20 +43,6 @@ function MoveAction(_name) constructor {
 	function SetAirOK(_airok) {
 		airok = _airok;
 	}
-	function SetAxis(_h, _v) {
-		haxis = sign(_h);
-		vaxis = sign(_v);
-	}
-	
-	function Perform() {
-		timeline_position = 0;
-		timeline_running = true;
-		timeline_index = timeline;
-	}
-	function End() {
-		timeline_position = 0;
-		timeline_running = false;
-	}
 }
 #endregion
 #region Initializers
@@ -59,17 +52,19 @@ function init_characters() {
 	var char = new Character("Carinha");
 
 	//Sprites
-	char.addSprite(spr_tai_idle);
+	char.SetSprites(spr_tai_idle,
+					spr_tai_walk,
+					spr_tai_dash,
+					spr_tai_jump);
 
 	//Moves
-	var move = new MoveAction("Neutral");
+	var move = new MoveAction("Neutral", 5);
 	move.SetTimeline(tl_move_taijab);
 	move.SetSpecial(false);
 	move.SetAirOK(false);
-	move.SetAxis(0, 0);
 	char.addMoveAction(move);
 	
-	character[characters.carinha] = char;
+	CHAR_Allocate(characters.carinha, char);
 	*/
 	#endregion
 	
@@ -79,20 +74,22 @@ function init_characters() {
 	};
 	
 	#region CHARACTERS.CARINHA
-	var char = new Character("Carinha");
+		var char = new Character("Carinha");
 
-	//Sprites
-	char.addSprite(spr_tai_idle);
+		//Sprites
+		char.SetSprites(spr_tai_idle,
+						spr_tai_idle,
+						spr_tai_idle,
+						spr_tai_idle);
 
-	//Moves
-	var move = new MoveAction("Neutral");
-	move.SetTimeline(tl_move_taijab);
-	move.SetSpecial(false);
-	move.SetAirOK(false);
-	move.SetAxis(0, 0);
-	char.addMoveAction(move);
+		//Moves
+		var move = new MoveAction("Neutral", 5);
+		move.SetTimeline(tl_move_taijab);
+		move.SetSpecial(false);
+		move.SetAirOK(false);
+		char.addMoveAction(move);
 	
-	character[characters.carinha] = char;
+		CHAR_Allocate(characters.carinha, char);
 	#endregion
 }
 #endregion
